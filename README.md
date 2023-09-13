@@ -25,7 +25,7 @@ despues de este proceso creamos una carpeta llamada src y dentro creamos el arch
 
 luego procedemos a crear el archivo de configuracion de typescript con el siguiente comando 
 
-    - tsc init
+    - tsc --init
 
 en este archivo de configuracion ingresamos y vamos a habilitar las siguientes opciones
 
