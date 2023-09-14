@@ -144,5 +144,53 @@ ahora vamos al archivo server.ts y nos dirigimos a el arrive de retorno de la fu
 
     return [new UserRouter().router];
 
+## entorno de produccion
+
+ahora en la carpeta src creamo la carpeta config y dentro creamos el archivo config.ts
+
+luego nos dirigimos la package.json y agregamos el siguiente script 
+
+    - "prod":"SET NODE_ENV=production && npm start"
+
+ahora creamos los archivo para variables de entorno en la carpeta principal .env y .production.env
+
+en el archivo config.ts agregamos los siguiente
+
+    import * as dotenv from 'dotenv';
+
+    export abstract class ConfigServer{
+        constructor() {
+            const nodeNameEnv = this.createPathEnv(this.nodeEnv);
+            dotenv.config({
+                path: nodeNameEnv,
+            });
+        }
+
+        public getEnvairoment(k: string){
+            return process.env[k];
+        }
+
+        public getNumberEnv(k:string):number{
+            return Number(this.getEnvairoment(k));
+        }
+
+        public get nodeEnv():string{
+            return this.getEnvairoment('NODE_ENV')?.trim() || "";
+        }
+
+        public createPathEnv(path: string): string{
+            const arrEnv: Array<string> = ['env'];
+
+            if(path.length>0){
+                const stringToArray = path.split('.');
+                arrEnv.unshift(...stringToArray);
+            }
+            return '.' + arrEnv.join('.');
+        }
+    }
+
+luego vamos al archivo server.ts y la clase la extendemos a configServer agregamos la funcion super en su constructor y cambiamos la variable port por lo siguiente
+
+
 
 
