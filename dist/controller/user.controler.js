@@ -4,7 +4,7 @@ exports.UserController = void 0;
 class UserController {
     getUsers(req, res) {
         res.status(200).json({
-            message: "elias salazar"
+            user: "elias salazar"
         });
     }
 }
