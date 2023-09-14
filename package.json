@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "tsc && node dist/server.js"
+    "start": "tsc && node dist/server.js",
+    "dev": "tsc && concurrently \"tsc -w\" \"nodemon dist/server.js\""
   },
   "author": "eiris elias salazar aguilar",
   "license": "ISC",
